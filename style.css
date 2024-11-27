@@ -44,3 +44,6 @@ input:focus{
 input::placeholder{
    color: black;
 }
+.resultado{
+    text-align: center;
+}

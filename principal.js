@@ -18,6 +18,22 @@ botainho.addEventListener("click", () => {
 })
 async function buscarClima(cidade) {
     console.log(cidade)
-    const respostaapi=await fetch(`${api}&q=${cidade}=&appid=${key}`)
+    const respostaapi = await fetch(`${api}&q=${cidade}&appid=${key}`)
+    const data = await respostaapi.json()
     console.log(respostaapi)
+    if (respostaapi.ok) {
+        resultado(data)
+        console.log(data)
+
+    } else {
+        alert("digite um nome de cidade valido")
+    }
+}
+function resultado(data) {
+    const {
+        main, weather
+    } = data
+    temperatura.innerHTML = Math.round(main.temp) + "ºC"
+    descricao.innerHTML = weather[0].description
+    imagem.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`
 }
